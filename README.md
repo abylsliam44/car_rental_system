@@ -1,6 +1,6 @@
 # Car Rental Management System
 
-Welcome to the **Car Rental Management System** – a comprehensive solution for managing car rentals, customers, bookings, and billing. This project is designed to help rental companies streamline their operations, improve customer experience, and manage financial transactions efficiently.
+Welcome to the **Car Rental Management System** – a streamlined solution for managing car rentals, customers, bookings, and billing. This system is designed to improve the operational efficiency of rental companies, enhance customer experience, and facilitate smooth financial transactions.
 
 ## Table of Contents
 
@@ -15,35 +15,77 @@ Welcome to the **Car Rental Management System** – a comprehensive solution for
 
 ## Overview
 
-The **Car Rental Management System** is developed with simplicity, usability, and efficiency in mind. Our system supports the complete lifecycle of car rentals, including fleet management, customer records, bookings, billing, and discounts. With an intuitive interface, it enables seamless data handling and improves overall productivity in managing rental services.
+The **Car Rental Management System** aims for simplicity, usability, and efficiency. Supporting the full rental lifecycle, this system provides fleet management, customer records, bookings, billing, and discount features. With an intuitive terminal-based interface, it enables smooth data handling and productivity in rental operations.
 
 ## Features
 
-1. **Car Management**: Add, view, and manage a fleet of cars with various models, brands, and types.
-2. **Customer Management**: Handle customer data, including VIP and Regular types, with personalized services.
-3. **Booking Management**: Create, update, and approve bookings. Manage booking states (e.g., New, Confirmed) and approvals.
-4. **Billing and Discounts**: Calculate total rental costs, including additional services and custom discounts.
-5. **Interactive Terminal-Based UI**: User-friendly prompts and menus make the system easy to use and navigate.
+- **Car Management**: Manage a fleet of cars by adding, viewing, and updating details of various car models, brands, and types.
+- **Customer Management**: Store and handle customer data, including VIP and Regular customer types with tailored services.
+- **Booking Management**: Create, update, and approve bookings with state management (e.g., New, Confirmed).
+- **Billing and Discounts**: Calculate rental costs, including add-on services and flexible discount options.
+- **Interactive Terminal-Based Interface**: User-friendly prompts and menus ensure easy navigation and operation.
 
 ## Team
 
-### Meet the Developers
-- **Abylay** - Lead Developer and Architect. He designed the project's core structure and implemented the `Car` and `Booking` functionalities.
-- **Azan** - Customer Management Specialist. He developed all customer-related classes, including VIP and Regular customer types.
-- **Ramazan** - Booking System Expert. He created the booking management system, handling state transitions and approvals.
-- **Daniil** - Billing and Discounts Specialist. He implemented billing calculations, the `DiscountInterpreter`, and designed a flexible discount system.
+### Developers
+
+- **Abylay**: Lead Developer and Architect. Designed the core structure and implemented the `Car` and `Booking` functionalities.
+- **Azan**: Customer Management Specialist. Developed all customer-related classes, including VIP and Regular customer types.
+- **Ramazan**: Booking System Expert. Built the booking management system, handling booking states and approvals.
+- **Daniil**: Billing and Discounts Specialist. Created billing calculations, the `DiscountInterpreter`, and a flexible discount system.
 
 ## Installation
 
-To set up and run this project locally, please follow these steps:
+To set up and run this project locally, follow these instructions:
 
 ### Prerequisites
 
-- **Java Development Kit (JDK)** - Make sure JDK is installed (version 8 or higher).
-- **Git** - Ensure Git is installed for cloning the repository.
+- **Java Development Kit (JDK)**
+- **Git**
 
-### Steps
+### Setup
 
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/username/car-rental-system.git
+   cd car-rental-system
+
+Compile the Code
+
+
+javac -d out src/**/*.java
+
+Run the Project
+
+
+    java -cp out Main
+
+After starting the program, follow the on-screen instructions to:
+
+    Add and manage car details.
+    Register and manage customer information.
+    Book and approve car rentals.
+    Calculate billing with optional discounts.
+
+Project Structure
+
+car-rental-system/
+│
+├── src/
+│   ├── car/                  # Car management classes
+│   ├── customer/             # Customer-related classes
+│   ├── booking/              # Booking management classes
+│   ├── billing/              # Billing and discount classes
+│   └── Main.java             # Main class to run the project
+│
+├── README.md                 # Project documentation
+└── LICENSE                   # License information
+
+GitHub Repository
+
+Find the project on GitHub: Car Rental System Repository
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Feel free to adjust any sections to fit your team’s final project structure and naming con
