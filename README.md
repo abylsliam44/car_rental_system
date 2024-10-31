@@ -45,47 +45,8 @@ To set up and run this project locally, follow these instructions:
 
 ### Setup
 
-1. **Clone the Repository**
+**Clone the Repository**
    ```bash
    git clone https://github.com/username/car-rental-system.git
    cd car-rental-system
 
-Compile the Code
-
-
-javac -d out src/**/*.java
-
-Run the Project
-
-
-    java -cp out Main
-
-After starting the program, follow the on-screen instructions to:
-
-    Add and manage car details.
-    Register and manage customer information.
-    Book and approve car rentals.
-    Calculate billing with optional discounts.
-
-Project Structure
-
-car-rental-system/
-│
-├── src/
-│   ├── car/                  # Car management classes
-│   ├── customer/             # Customer-related classes
-│   ├── booking/              # Booking management classes
-│   ├── billing/              # Billing and discount classes
-│   └── Main.java             # Main class to run the project
-│
-├── README.md                 # Project documentation
-└── LICENSE                   # License information
-
-GitHub Repository
-
-Find the project on GitHub: Car Rental System Repository
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Feel free to adjust any sections to fit your team’s final project structure and naming con
