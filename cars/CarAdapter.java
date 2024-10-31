@@ -1,25 +1,18 @@
-//Adapter
 package cars;
 
-public class CarAdapter {
-    private ExternalCarSystem externalCarSystem;
+public class CarAdapter implements OldCarSystem {
+    private Car newCar;
 
-    public CarAdapter(ExternalCarSystem externalCarSystem) {
-        this.externalCarSystem = externalCarSystem;
+    public CarAdapter(Car newCar) {
+        this.newCar = newCar;
     }
 
-    public String adaptCarData(Car car) {
-        return externalCarSystem.receiveCarData(
-                car.getModel(),
-                car.getColor(),
-                car.getEngineType(),
-                car.getCost()
-        );
+    @Override
+    public void displayOldCarInfo() {
+        System.out.println("Car model: " + newCar.getModel() + ", brand: " + newCar.getBrand());
     }
 }
 
-class ExternalCarSystem {
-    public String receiveCarData(String model, String color, String engineType, double cost) {
-        return "Car details - Model: " + model + ", Color: " + color + ", Engine: " + engineType + ", Cost: $" + cost;
-    }
+interface OldCarSystem {
+    void displayOldCarInfo();
 }

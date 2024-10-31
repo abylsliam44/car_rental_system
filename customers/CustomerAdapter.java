@@ -1,9 +1,18 @@
-public class CustomerAdapter {
-    public ExternalCustomerData adaptCustomer(Customer customer) {
-        ExternalCustomerData externalData = new ExternalCustomerData();
-        externalData.setName(customer.getName());
-        externalData.setPhone(customer.getPhone());
-        externalData.setType(customer.getType());
-        return externalData;
+package customers;
+
+public class CustomerAdapter implements OldCustomerSystem {
+    private Customer newCustomer;
+
+    public CustomerAdapter(Customer newCustomer) {
+        this.newCustomer = newCustomer;
     }
+
+    @Override
+    public void displayOldCustomerInfo() {
+        System.out.println("Customer name: " + newCustomer.getName() + ", type: " + newCustomer.getType());
+    }
+}
+
+interface OldCustomerSystem {
+    void displayOldCustomerInfo();
 }

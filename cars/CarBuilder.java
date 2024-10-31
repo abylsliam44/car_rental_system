@@ -1,27 +1,32 @@
-//Builder
 package cars;
 
 public class CarBuilder {
     private String model;
-    private String color;
-    private String engineType;
+    private String brand;
+    private boolean hasAirConditioning;
+    private boolean hasGPS;
 
     public CarBuilder setModel(String model) {
         this.model = model;
         return this;
     }
 
-    public CarBuilder setColor(String color) {
-        this.color = color;
+    public CarBuilder setBrand(String brand) {
+        this.brand = brand;
         return this;
     }
 
-    public CarBuilder setEngineType(String engineType) {
-        this.engineType = engineType;
+    public CarBuilder setAirConditioning(boolean hasAirConditioning) {
+        this.hasAirConditioning = hasAirConditioning;
+        return this;
+    }
+
+    public CarBuilder setGPS(boolean hasGPS) {
+        this.hasGPS = hasGPS;
         return this;
     }
 
     public Car build() {
-        return new Car(model, color, engineType);
+        return new CustomCar(model, brand, hasAirConditioning, hasGPS);
     }
 }

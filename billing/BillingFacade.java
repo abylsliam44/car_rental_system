@@ -1,28 +1,20 @@
 package billing;
 
 public class BillingFacade {
-    private DiscountTemplate discount;
-    private AdditionalServicesDecorator services;
+    private DiscountProxy discountProxy;
+    private AdditionalServicesDecorator servicesDecorator;
 
-    public BillingFacade(DiscountTemplate discount, AdditionalServicesDecorator services) {
-        this.discount = discount;
-        this.services = services;
+    public BillingFacade() {
+        discountProxy = new DiscountProxy();
+        servicesDecorator = new AdditionalServicesDecorator();
     }
 
-    public double calculateFinalBill(int carId, int customerId, int days) {
-        double baseCost = getRentalCost(carId, days);
-        double discountAmount = discount.calculateDiscount(getCustomer(customerId));
-        double serviceCost = services.getCost();
-        return baseCost - discountAmount + serviceCost;
-    }
-
-    private double getRentalCost(int carId, int days) {
-        // Assume a basic calculation based on days
-        return days * 50.0; // Example rate
-    }
-
-    private Customer getCustomer(int customerId) {
-        // Retrieve customer details
-        return new Customer(customerId);
+    // Основной метод для расчета стоимости
+    public double calculateTotalPrice(double basePrice, String customerType, boolean hasAdditionalServices) {
+        double discountedPrice = discountProxy.applyDiscount(basePrice, customerType);
+        if (hasAdditionalServices) {
+            discountedPrice = servicesDecorator.addServices(discountedPrice);
+        }
+        return discountedPrice;
     }
 }

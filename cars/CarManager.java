@@ -1,16 +1,13 @@
-//Singleton
 package cars;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarManager {
+    private List<Car> cars = new ArrayList<>();
     private static CarManager instance;
-    private List<Car> cars;
 
-    private CarManager() {
-        cars = new ArrayList<>();
-    }
+    private CarManager() {}
 
     public static CarManager getInstance() {
         if (instance == null) {
@@ -23,20 +20,16 @@ public class CarManager {
         cars.add(car);
     }
 
-    public void removeCar(int carId) {
-        cars.removeIf(car -> car.getId() == carId);
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public Car getCarById(int carId) {
+    public Car getCarByModel(String model) {
         for (Car car : cars) {
-            if (car.getId() == carId) {
+            if (car.getModel().equals(model)) {
                 return car;
             }
         }
-        return null;
-    }
-
-    public List<Car> getAllCars() {
-        return cars;
+        return null; // Если автомобиль не найден
     }
 }

@@ -1,8 +1,15 @@
+package customers;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomerManager {
     private static CustomerManager instance;
-    private List<Customer> customers = new ArrayList<>();
+    private List<Customer> customers;
 
-    private CustomerManager() {}
+    private CustomerManager() {
+        customers = new ArrayList<>();
+    }
 
     public static CustomerManager getInstance() {
         if (instance == null) {
@@ -11,15 +18,12 @@ public class CustomerManager {
         return instance;
     }
 
-    public List<Customer> getAllCustomers() {
-        return customers;
-    }
-
     public void addCustomer(Customer customer) {
         customers.add(customer);
+        System.out.println("Customer added: " + customer);
     }
 
-    public void removeCustomer(int customerId) {
-        customers.removeIf(customer -> customer.getId() == customerId);
+    public List<Customer> getCustomers() {
+        return customers;
     }
 }

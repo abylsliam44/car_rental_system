@@ -1,26 +1,39 @@
 package billing;
 
 public abstract class DiscountTemplate {
-    public double calculateDiscount(Customer customer) {
-        if (isEligibleForDiscount(customer)) {
-            return applyDiscount(customer);
+    // Шаблонный метод
+    public final double calculateDiscount(double price, String customerType) {
+        if (isEligibleForDiscount(customerType)) {
+            return applyDiscount(price);
+        } else {
+            return price;
         }
-        return 0;
     }
 
-    protected abstract boolean isEligibleForDiscount(Customer customer);
-
-    protected abstract double applyDiscount(Customer customer);
+    protected abstract boolean isEligibleForDiscount(String customerType);
+    protected abstract double applyDiscount(double price);
 }
 
 class VIPDiscount extends DiscountTemplate {
     @Override
-    protected boolean isEligibleForDiscount(Customer customer) {
-        return customer.isVIP();
+    protected boolean isEligibleForDiscount(String customerType) {
+        return customerType.equalsIgnoreCase("VIP");
     }
 
     @Override
-    protected double applyDiscount(Customer customer) {
-        return 100.0; // Flat rate for VIP
+    protected double applyDiscount(double price) {
+        return price * 0.8; // 20% скидка для VIP клиентов
+    }
+}
+
+class RegularDiscount extends DiscountTemplate {
+    @Override
+    protected boolean isEligibleForDiscount(String customerType) {
+        return customerType.equalsIgnoreCase("Regular");
+    }
+
+    @Override
+    protected double applyDiscount(double price) {
+        return price * 0.9; // 10% скидка для обычных клиентов
     }
 }

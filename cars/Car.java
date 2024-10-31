@@ -1,96 +1,43 @@
 package cars;
 
+public interface Car {
+    void assemble();
+    String getModel();
+    String getBrand();
+}
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Car {
-    private int id;               
+class BasicCar implements Car {
     private String model;
-    private String color;
-    private String engineType;
-    private double baseCost;
-    private List<String> additionalServices;
+    private String brand;
 
-    
-    public Car(int id, String model, String color, String engineType) {
-        this.id = id;
+    public BasicCar(String model, String brand) {
         this.model = model;
-        this.color = color;
-        this.engineType = engineType;
-        this.baseCost = 100.0; 
-        this.additionalServices = new ArrayList<>();
+        this.brand = brand;
     }
 
-    
-    public Car(String model, String color, String engineType) {
-        this.model = model;
-        this.color = color;
-        this.engineType = engineType;
-        this.baseCost = 100.0;
-        this.additionalServices = new ArrayList<>();
+    @Override
+    public void assemble() {
+        System.out.println("Assembling a basic car.");
     }
 
-    
-    public int getId() {
-        return id;
-    }
-
+    @Override
     public String getModel() {
         return model;
     }
 
-    public String getColor() {
-        return color;
+    @Override
+    public String getBrand() {
+        return brand;
     }
+}
 
-    public String getEngineType() {
-        return engineType;
-    }
-
-    public double getCost() {
-        return baseCost;
-    }
-
-    public void setBaseCost(double baseCost) {
-        this.baseCost = baseCost;
-    }
-
-    public List<String> getAdditionalServices() {
-        return additionalServices;
-    }
-
-    public void addService(String service) {
-        additionalServices.add(service);
-    }
-
-    public double calculateTotalCost() {
-        double totalCost = baseCost;
-        for (String service : additionalServices) {
-            switch (service.toLowerCase()) {
-                case "gps":
-                    totalCost += 15.0;
-                    break;
-                case "insurance":
-                    totalCost += 50.0;
-                    break;
-                case "premium seats":
-                    totalCost += 25.0;
-                    break;
-            }
-        }
-        return totalCost;
+class LuxuryCar extends BasicCar {
+    public LuxuryCar(String model, String brand) {
+        super(model, brand);
     }
 
     @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", engineType='" + engineType + '\'' +
-                ", baseCost=" + baseCost +
-                ", additionalServices=" + additionalServices +
-                '}';
+    public void assemble() {
+        System.out.println("Assembling a luxury car.");
     }
 }

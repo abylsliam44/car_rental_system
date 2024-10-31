@@ -1,40 +1,27 @@
-//Factory
 package cars;
 
 public abstract class CarFactory {
-    public abstract Car createCar();
+    public abstract Car createCar(String model, String brand);
 
     public static CarFactory getFactory(String type) {
-        switch (type.toLowerCase()) {
-            case "suv":
-                return new SUVFactory();
-            case "sedan":
-                return new SedanFactory();
-            case "electric":
-                return new ElectricCarFactory();
-            default:
-                throw new IllegalArgumentException("Unknown car type");
+        if (type.equalsIgnoreCase("Luxury")) {
+            return new LuxuryCarFactory();
+        } else {
+            return new BasicCarFactory();
         }
     }
 }
 
-class SUVFactory extends CarFactory {
+class LuxuryCarFactory extends CarFactory {
     @Override
-    public Car createCar() {
-        return new Car("SUV", "White", "V6 Engine");
+    public Car createCar(String model, String brand) {
+        return new LuxuryCar(model, brand);
     }
 }
 
-class SedanFactory extends CarFactory {
+class BasicCarFactory extends CarFactory {
     @Override
-    public Car createCar() {
-        return new Car("Sedan", "Black", "V4 Engine");
-    }
-}
-
-class ElectricCarFactory extends CarFactory {
-    @Override
-    public Car createCar() {
-        return new Car("Electric", "Blue", "Electric Engine");
+    public Car createCar(String model, String brand) {
+        return new BasicCar(model, brand);
     }
 }

@@ -1,16 +1,19 @@
 package billing;
 
 public class DiscountProxy {
-    private DiscountTemplate discountTemplate;
+    private DiscountTemplate vipDiscount;
+    private DiscountTemplate regularDiscount;
 
-    public DiscountProxy(DiscountTemplate discountTemplate) {
-        this.discountTemplate = discountTemplate;
+    public DiscountProxy() {
+        vipDiscount = new VIPDiscount();
+        regularDiscount = new RegularDiscount();
     }
 
-    public double getDiscount(Customer customer) {
-        if (customer.hasActiveMembership()) {
-            return discountTemplate.calculateDiscount(customer);
+    public double applyDiscount(double basePrice, String customerType) {
+        if (customerType.equalsIgnoreCase("VIP")) {
+            return vipDiscount.calculateDiscount(basePrice, customerType);
+        } else {
+            return regularDiscount.calculateDiscount(basePrice, customerType);
         }
-        return 0;
     }
 }

@@ -1,12 +1,15 @@
-//Decorator
 package cars;
 
-public abstract class CarDecorator extends Car {
+public abstract class CarDecorator implements Car {
     protected Car decoratedCar;
 
     public CarDecorator(Car decoratedCar) {
-        super(decoratedCar.getModel(), decoratedCar.getColor(), decoratedCar.getEngineType());
         this.decoratedCar = decoratedCar;
+    }
+
+    @Override
+    public void assemble() {
+        decoratedCar.assemble();
     }
 
     @Override
@@ -15,36 +18,9 @@ public abstract class CarDecorator extends Car {
     }
 
     @Override
-    public String getColor() {
-        return decoratedCar.getColor();
-    }
-
-    @Override
-    public String getEngineType() {
-        return decoratedCar.getEngineType();
-    }
-
-    public abstract double getCost();
-}
-
-class GPSDecorator extends CarDecorator {
-    public GPSDecorator(Car decoratedCar) {
-        super(decoratedCar);
-    }
-
-    @Override
-    public double getCost() {
-        return decoratedCar.getCost() + 15; // Adding GPS cost
+    public String getBrand() {
+        return decoratedCar.getBrand();
     }
 }
 
-class InsuranceDecorator extends CarDecorator {
-    public InsuranceDecorator(Car decoratedCar) {
-        super(decoratedCar);
-    }
 
-    @Override
-    public double getCost() {
-        return decoratedCar.getCost() + 50; // Adding insurance cost
-    }
-}
