@@ -42,6 +42,7 @@ To set up and run this project locally, follow these instructions:
    git clone https://github.com/username/car-rental-system.git
    cd car-rental-system
    java -cp out Main
+```
 
 ## Project Structure
 
@@ -57,7 +58,7 @@ car-rental-system/
 │
 ├── README.md                 # Project documentation
 
-
+```
 # Project Features
 
 1. **Add a New Car**
