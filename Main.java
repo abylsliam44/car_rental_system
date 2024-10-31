@@ -18,79 +18,79 @@ public class Main {
         InMemoryDatabase db = InMemoryDatabase.getInstance();
 
         System.out.println("=== Welcome to the Ultimate Car Rental Management System! ===");
-        System.out.println("Your all-in-one solution for managing cars, customers, bookings, and so much more.");
-        System.out.println("Sit back, relax, and let us take you on a journey through the wonders of car rental management!");
-        System.out.println("Whether you're a new user or a returning pro, we have something exciting for everyone.\n");
-
+        System.out.println("An advanced solution to handle all your rental needs, from cars to bookings and customer management.");
+        System.out.println("Let's get started on your journey to managing rentals efficiently!");
+        
+        // Initial welcome menu with more options
         while (true) {
             System.out.println("\n--- Start-Up Menu ---");
-            System.out.println("1. Explore the System Features");
-            System.out.println("2. Start Managing Rentals");
-            System.out.println("3. About Our System");
+            System.out.println("1. Learn about Features");
+            System.out.println("2. Get Started with Rental Management");
+            System.out.println("3. System Overview");
             System.out.println("4. Exit");
 
-            System.out.print("Please choose an option to proceed: ");
+            System.out.print("Select an option to proceed: ");
             int startChoice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine(); // Consume newline
 
             switch (startChoice) {
                 case 1:
                     displaySystemFeatures();
                     break;
-
                 case 2:
-                    System.out.println("\nAwesome! Let’s dive into the details and start managing your car rentals.");
+                    System.out.println("Excellent! Let's dive into managing rentals.");
                     showMainMenu(scanner, db);
                     break;
-
                 case 3:
-                    System.out.println("\n--- About Our System ---");
-                    System.out.println("Our Car Rental Management System provides a seamless experience for managing car rentals, customer data, bookings, and even complex billing calculations.");
-                    System.out.println("With a user-friendly interface, you can manage your rental business with ease and efficiency.");
-                    System.out.println("Press 'Enter' to return to the Start-Up Menu...");
-                    scanner.nextLine();
+                    showSystemOverview(scanner);
                     break;
-
                 case 4:
-                    System.out.println("Thank you for choosing the Car Rental Management System! Have a great day!");
+                    System.out.println("Thanks for using the Car Rental Management System. Goodbye!");
                     scanner.close();
                     return;
-
                 default:
-                    System.out.println("Invalid option. Please choose again.");
+                    System.out.println("Invalid option. Please try again.");
             }
         }
     }
 
     private static void displaySystemFeatures() {
         System.out.println("\n--- System Features ---");
-        System.out.println("1. Manage your fleet of cars, from basic models to luxury vehicles.");
-        System.out.println("2. Keep track of customers and personalize their rental experience.");
-        System.out.println("3. Create and manage bookings with a few simple steps.");
-        System.out.println("4. Handle complex billing needs, including discounts and additional services.");
-        System.out.println("5. Calculate costs with advanced pricing structures for VIP customers.");
-        System.out.println("6. View comprehensive reports on all your data.");
-        System.out.println("\nAre you ready to start? Head back to the Start-Up Menu and choose 'Start Managing Rentals'!");
+        System.out.println("1. Add, view, and manage your fleet of cars, from economy to luxury models.");
+        System.out.println("2. Maintain customer records and offer personalized rental experiences.");
+        System.out.println("3. Create, manage, and update bookings seamlessly.");
+        System.out.println("4. Complex billing calculations, including discounts, add-ons, and VIP pricing.");
+        System.out.println("5. Comprehensive management of your data.");
+        System.out.println("Ready to explore? Head back to the Start-Up Menu and choose 'Get Started with Rental Management'!");
+    }
+
+    private static void showSystemOverview(Scanner scanner) {
+        System.out.println("\n--- System Overview ---");
+        System.out.println("Our Car Rental Management System is designed for ease and efficiency.");
+        System.out.println("With a friendly interface, you can handle your business needs in no time.");
+        System.out.println("Press 'Enter' to return to the Start-Up Menu...");
+        scanner.nextLine();
     }
 
     private static void showMainMenu(Scanner scanner, InMemoryDatabase db) {
         while (true) {
             System.out.println("\n--- Main Menu ---");
-            System.out.println("1. Add a new car");
-            System.out.println("2. Add a new customer");
-            System.out.println("3. Create a booking");
-            System.out.println("4. Add sports package to a car");
-            System.out.println("5. Move booking to next state");
-            System.out.println("6. Approve a booking");
-            System.out.println("7. Calculate total price with discounts");
-            System.out.println("8. View all cars");
-            System.out.println("9. View all customers");
-            System.out.println("10. View all bookings");
-            System.out.println("11. Simulate discount calculation");
-            System.out.println("12. Exit to Start-Up Menu");
+            System.out.println("1. Add a New Car");
+            System.out.println("2. Add a New Customer");
+            System.out.println("3. Create a Booking");
+            System.out.println("4. Add Sports Package to a Car");
+            System.out.println("5. Move Booking to Next State");
+            System.out.println("6. Approve a Booking");
+            System.out.println("7. Calculate Total Price with Discounts");
+            System.out.println("8. View All Cars");
+            System.out.println("9. View All Customers");
+            System.out.println("10. View All Bookings");
+            System.out.println("11. Simulate Discount Calculation");
+            System.out.println("12. Show Summary of All Data");
+            System.out.println("13. Return to Start-Up Menu");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Consume newline
 
             switch (choice) {
                 case 1:
@@ -127,6 +127,9 @@ public class Main {
                     simulateDiscountCalculation(scanner);
                     break;
                 case 12:
+                    showSummary(db);
+                    break;
+                case 13:
                     System.out.println("Returning to the Start-Up Menu...");
                     return;
                 default:
@@ -269,10 +272,23 @@ public class Main {
     }
 
     private static void simulateDiscountCalculation(Scanner scanner) {
-        System.out.print("Enter a discount expression (e.g., '100 20 + 5 *'): ");
+        System.out.print("Enter a discount expression (e.g., '100 + 20 * 5'): ");
         String discountExpression = scanner.nextLine();
         DiscountInterpreter discountInterpreter = new DiscountInterpreter();
-        double discountResult = discountInterpreter.interpret(discountExpression);
-        System.out.println("Discount expression result: " + discountResult);
+    
+        try {
+            double discountResult = discountInterpreter.interpret(discountExpression);
+            System.out.println("Discount expression result: " + discountResult);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid expression: " + e.getMessage());
+        }
+    }
+
+    private static void showSummary(InMemoryDatabase db) {
+        System.out.println("\n--- System Summary ---");
+        viewAllCars(db);
+        viewAllCustomers(db);
+        viewAllBookings(db);
+        System.out.println("Thank you for reviewing the data. Returning to Main Menu...");
     }
 }

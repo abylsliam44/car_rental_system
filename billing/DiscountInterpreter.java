@@ -3,43 +3,71 @@ package billing;
 import java.util.Stack;
 
 public class DiscountInterpreter {
-    // Интерпретатор для вычисления сложных скидок на основе выражений
+
+    
     public double interpret(String expression) {
-        Stack<Double> stack = new Stack<>();
-        String[] tokens = expression.split(" ");
-        
-        for (String token : tokens) {
-            if (isOperator(token)) {
-                double b = stack.pop();
-                double a = stack.pop();
-                stack.push(applyOperator(token, a, b));
-            } else {
-                stack.push(Double.parseDouble(token));
+        Stack<Double> values = new Stack<>();   
+        Stack<Character> operators = new Stack<>(); 
+
+        for (int i = 0; i < expression.length(); i++) {
+            char ch = expression.charAt(i);
+
+
+            if (ch == ' ') continue;
+
+            
+            if (Character.isDigit(ch)) {
+                StringBuilder sb = new StringBuilder();
+
+                
+                while (i < expression.length() && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == '.')) {
+                    sb.append(expression.charAt(i++));
+                }
+                i--; 
+                values.push(Double.parseDouble(sb.toString()));
+            }
+            
+            else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                
+                while (!operators.isEmpty() && hasPrecedence(ch, operators.peek())) {
+                    values.push(applyOperation(operators.pop(), values.pop(), values.pop()));
+                }
+                
+                operators.push(ch);
             }
         }
-        return stack.pop();
+
+        
+        while (!operators.isEmpty()) {
+            values.push(applyOperation(operators.pop(), values.pop(), values.pop()));
+        }
+
+        
+        return values.pop();
     }
 
-    private boolean isOperator(String token) {
-        return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
+    
+    private boolean hasPrecedence(char op1, char op2) {
+        if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-')) {
+            return false;
+        }
+        return true;
     }
 
-    private double applyOperator(String operator, double a, double b) {
-        switch (operator) {
-            case "+":
+    
+    private double applyOperation(char op, double b, double a) {
+        switch (op) {
+            case '+':
                 return a + b;
-            case "-":
+            case '-':
                 return a - b;
-            case "*":
+            case '*':
                 return a * b;
-            case "/":
-                if (b != 0) {
-                    return a / b;
-                } else {
-                    throw new IllegalArgumentException("Cannot divide by zero.");
-                }
+            case '/':
+                if (b == 0) throw new ArithmeticException("Cannot divide by zero");
+                return a / b;
             default:
-                throw new IllegalArgumentException("Unknown operator: " + operator);
+                throw new IllegalArgumentException("Unknown operator: " + op);
         }
     }
 }
